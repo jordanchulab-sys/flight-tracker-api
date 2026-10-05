@@ -31,4 +31,6 @@ try:
 except Exception as e:
     print(f"\nAn error occurred: {e}")
 
-input("\nPress Enter to exit...")
+# Only wait for input if running in an interactive terminal
+if os.isatty(0):
+    input("\nPress Enter to exit...")
