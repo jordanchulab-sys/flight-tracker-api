@@ -28,4 +28,4 @@ jobs:
       env:
         AVIATIONSTACK_API_KEY: ${{ secrets.FLIGHT_API_KEY }}
       run: |
-        python lookup_flight.py
+        docker run --rm -e AVIATIONSTACK_API_KEY flight-tracker:test python lookup_flight.py
