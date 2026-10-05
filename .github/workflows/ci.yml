@@ -22,6 +22,7 @@ jobs:
       with:
         context: .
         push: false
+        load: true
         tags: flight-tracker:test
 
     - name: Run Application with Secret
