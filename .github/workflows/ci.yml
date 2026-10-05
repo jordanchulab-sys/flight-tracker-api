@@ -26,6 +26,6 @@ jobs:
 
     - name: Run Application with Secret
       env:
-        FLIGHT_API_KEY: ${{ secrets.FLIGHT_API_KEY }}
+        AVIATIONSTACK_API_KEY: ${{ secrets.FLIGHT_API_KEY }}
       run: |
-        echo "Environment secret loaded securely for execution."
+        python lookup_flight.py
