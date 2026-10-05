@@ -3,18 +3,23 @@ import json
 import os
 from dotenv import load_dotenv
 
-# Load variables from the local .env file
+# Load variables from the local .env file (if present)
 load_dotenv()
 
 # Pull the API key securely from the environment
 API_KEY = os.getenv("AVIATIONSTACK_API_KEY")
 
 if not API_KEY:
-    print("Error: AVIATIONSTACK_API_KEY is not set in the .env file!")
+    print("Error: AVIATIONSTACK_API_KEY is not set in the environment!")
     exit(1)
 
-# Ask for flight number input
-flight_number = input("Enter the flight number (e.g., UA123 or DL456): ").strip()
+# Handle flight number input safely for interactive vs CI/CD headless environments
+if os.isatty(0):
+    flight_number = input("Enter the flight number (e.g., UA123 or DL456): ").strip()
+else:
+    flight_number = "UA123"
+    print(f"Non-interactive environment detected. Using default flight: {flight_number}")
+
 url = f"http://api.aviationstack.com/v1/flights?access_key={API_KEY}&flight_iata={flight_number}"
 
 print(f"\nSearching Aviationstack for flight {flight_number}...")
