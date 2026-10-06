@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 .env
 .secret
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
