@@ -1,4 +1,4 @@
-# Comprehensive DevOps & Kubernetes Project Guide: Flight Tracker
+# Flight Tracker Project: Professional DevOps & Kubernetes Guide
 
 This document provides an exhaustive, step-by-step account of building, securing, containerizing, and automating the deployment of the `flight-tracker` application using Python, Docker, Kubernetes, Terraform, and GitHub Actions.
 
@@ -16,7 +16,7 @@ This document provides an exhaustive, step-by-step account of building, securing
 
 ## 1. Project Vision & Tech Stack
 
-The goal of this project was to transition a local script into a production-grade, reproducible workflow.
+The goal of this project was to transition a local flight tracking script into a production-grade, reproducible DevOps workflow.
 
 * **Application Language**: Python 3.x (integrating with the Aviationstack REST API).
 * **Containerization**: Docker (multi-layered build running on slim Python base images).
@@ -207,7 +207,6 @@ resource "kubernetes_deployment" "flight_tracker" {
 ## 6. Phase 5: Secret Management Strategy
 
 To ensure zero plaintext leakage of credentials:
-
 1. **Local Development**: We inject secrets into Terraform dynamically via PowerShell session environment variables:
    ```powershell
    $env:TF_VAR_aviationstack_api_key="your_actual_api_key_here"
@@ -280,8 +279,8 @@ We managed git staging cleanly with proper case hygiene for cross-platform runne
 git status
 
 # Stage and commit configuration updates
-git add .gitignore main.tf .github/workflows/ci.yml Dockerfile lookup_flight.py requirements.txt
-git commit -m "Establish production-grade DevOps structure, Terraform config, and CI workflow"
+git add flight_tracker_devops_guide.md main.tf Dockerfile lookup_flight.py requirements.txt .github/workflows/ci.yml .gitignore
+git commit -m "Add flight-tracker specific DevOps guide and production configuration"
 git push origin main
 ```
 
@@ -289,7 +288,7 @@ git push origin main
 
 ### Step A: Deploy Infrastructure via Terraform
 ```powershell
-$env:TF_VAR_aviationstack_api_key="eec3f2ed888082c586e293bcbf8de589"
+$env:TF_VAR_aviationstack_api_key="your_actual_api_key_here"
 terraform apply -auto-approve
 ```
 
@@ -309,7 +308,6 @@ To preserve local machine resources while keeping all source code safe in Git:
 ```powershell
 terraform destroy -auto-approve
 ```
-
 To spin it back up later:
 ```powershell
 terraform apply -auto-approve
